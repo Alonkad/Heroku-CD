@@ -1,0 +1,19 @@
+node_modules/
+test/node_modules/
+
+############
+## Web Storm
+############
+
+.idea/
+
+
+############
+## Windows
+############
+
+# Windows image file caches
+Thumbs.db
+
+# Folder config file
+Desktop.ini
