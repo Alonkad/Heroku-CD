@@ -28,7 +28,7 @@ app.get('/stock-info/:symbol', function (req, res) {
             data: stockData
         };
 
-        if(req.query && req.query['format'] === 'jsonp') {
+        if(req.query && req.query['callback']) {
             res.jsonp(result);
         }
         else {
