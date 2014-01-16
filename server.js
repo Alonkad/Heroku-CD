@@ -3,6 +3,7 @@ var Deferred = require('JQDeferred');
 var request = require('request');
 
 var stockApiUrl = 'http://download.finance.yahoo.com/d/quotes.csv?s={{symbol}}&f=t1nl1p2c1s';
+var cachedResults = {};
 
 //General app configurations (middlewares)
 var app = express();
@@ -49,11 +50,19 @@ function fetchStockData(symbol) {
     var url = stockApiUrl.replace('{{symbol}}', symbol);
 
     request({ url: url, timeout: 8000 }, function (error, response, body) {
+        var result;
+
         if (error) {
-            dfd.resolve(parseStockData(null));
+            result = tryGetFromCache(symbol);
         }
         if (!error && response.statusCode == 200) {
-            dfd.resolve(parseStockData(body));
+            result = parseStockData(body);
+        }
+
+        dfd.resolve(result);
+
+        if(result) {
+            cacheResults(result);
         }
     });
 
@@ -75,6 +84,15 @@ function parseStockData(dataStr) {
 
     return dataObj
 }
+
+function cacheResults(result) {
+    cachedResults[result.symbol] = result;
+}
+
+function tryGetFromCache(symbol) {
+    return cachedResults[symbol] || null;
+}
+
 
 /* Start the server */
 var port = process.env.PORT || 8006;
