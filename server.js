@@ -23,10 +23,17 @@ app.use(allowCrossDomain);
 //Monitors REST Api
 app.get('/stock-info/:symbol', function (req, res) {
     Deferred.when(fetchStockData(req.params.symbol)).done(function(stockData){
-        res.json({
+        var result = {
             success: !!stockData,
             data: stockData
-        });
+        };
+
+        if(req.query && req.query['format'] === 'jsonp') {
+            res.jsonp(result);
+        }
+        else {
+            res.json(result);
+        }
     });
 });
 
