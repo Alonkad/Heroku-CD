@@ -49,7 +49,7 @@ function fetchStockData(symbol) {
     var dfd = Deferred();
     var url = stockApiUrl.replace('{{symbol}}', symbol);
 
-    request({ url: url, timeout: 8000 }, function (error, response, body) {
+    request({ url: url, timeout: 4000 }, function (error, response, body) {
         var result;
 
         if (error) {
