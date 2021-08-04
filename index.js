@@ -14,7 +14,7 @@ app.use(allowCrossDomain);
 
 app.get('*', function(req, res) {
     res.json({
-        version: 2,
+        version: 1,
         success: true,
         request: {
             header: req.headers,

@@ -4,10 +4,10 @@
     "description": "alonkad",
     "main": "index.js",
     "engines": {
-        "node": "10.11.0"
+        "node": "14.x"
     },
     "dependencies": {
-        "express": "^4.15.4"
+        "express": "^4.17.1"
     },
     "scripts": {
         "test": "echo testing!"
