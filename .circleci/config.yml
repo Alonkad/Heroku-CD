@@ -1,9 +1,13 @@
 version: 2.1
 jobs:
+  build:
+    docker:
+      - image: cimg/node:14.4
   deploy:
     executor: heroku/default
     steps:
       - checkout
+      - run: node --version
       - heroku/install
       - run:
           command: >
