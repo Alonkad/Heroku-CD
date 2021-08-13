@@ -9,7 +9,6 @@ jobs:
       - run: node --version
       - run: npm install
       - run: npm test
-          name: Running tests
       - heroku/install
       - heroku/deploy-via-git
 orbs:
