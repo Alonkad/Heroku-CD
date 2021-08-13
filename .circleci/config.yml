@@ -7,11 +7,10 @@ jobs:
     steps:
       - checkout
       - run: node --version
-      - heroku/install
-      - run:
-          command: >
-            npm test
+      - run: npm install
+      - run: npm test
           name: Running tests
+      - heroku/install
       - heroku/deploy-via-git
 orbs:
   heroku: circleci/heroku@1.2.6
