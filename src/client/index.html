@@ -4,4 +4,11 @@
 </head>
 <body>
     <div>test</div>
+    <div id="data"></div>
+
+    <script>
+        fetch('/api').then(resp => resp.json()).then(resp => {
+            document.getElementById('data').innerText = JSON.stringify(resp, null, 4)
+        })
+    </script>
 </body>

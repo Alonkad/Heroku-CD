@@ -1,4 +1,5 @@
 import express, { NextFunction, Request, Response  } from 'express';
+import path from 'path';
 
 var app = express();
 
@@ -10,18 +11,22 @@ const allowCrossDomain = async (req:Request, res:Response, next: NextFunction) =
 
     next();
 };
+
+app.use(express.static(path.join(process.cwd(), 'src', 'client'), {
+    dotfiles: 'ignore',
+    etag: false,
+    index: ['index.html'],
+    redirect: false,
+}));
+
 app.use(allowCrossDomain);
 
-app.get('*', (req:Request, res:Response) => {
+
+
+app.get('/api', (req:Request, res:Response) => {
     res.json({
         version: 3,
         success: true,
-        request: {
-            header: req.headers,
-            query: req.query,
-            url: req.url,
-            ip: req.ip
-        }
     });
 });
 
