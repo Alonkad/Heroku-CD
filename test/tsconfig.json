@@ -1,0 +1,5 @@
+{
+  compilerOptions: {
+    isolatedModules: false /* Transpile each file as a separate module (similar to 'ts.transpileModule'). */
+  }
+}
