@@ -1,9 +1,9 @@
-var express = require('express');
+import express, { NextFunction, Request, Response  } from 'express';
 
 var app = express();
 
 //CORS middleware
-var allowCrossDomain = function(req, res, next) {
+const allowCrossDomain = async (req:Request, res:Response, next: NextFunction) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
@@ -12,9 +12,9 @@ var allowCrossDomain = function(req, res, next) {
 };
 app.use(allowCrossDomain);
 
-app.get('*', function(req, res) {
+app.get('*', (req:Request, res:Response) => {
     res.json({
-        version: 1,
+        version: 3,
         success: true,
         request: {
             header: req.headers,
@@ -26,7 +26,7 @@ app.get('*', function(req, res) {
 });
 
 /* Start the server */
-var port = process.env.PORT || 8006;
-app.listen(port, function() {
-    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+const port = process.env.PORT || 8006;
+app.listen(port, () => {
+    console.log("Express server listening on port %d in %s mode", port, app.settings.env);
 });
