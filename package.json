@@ -11,7 +11,8 @@
         "start-prod": "ts-node --transpile-only src/server/index.ts",
         "start-dev": "ts-node-dev --debug src/server/index.ts",
         "test": "jest",
-        "lint": "eslint '*/**/*.{js,ts,tsx}' --fix"
+        "lint": "eslint '*/**/*.{js,ts,tsx}' --fix",
+        "prepare": "husky install"
     },
     "dependencies": {
         "express": "^4.17.1",
@@ -32,8 +33,21 @@
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-prettier": "^3.4.0",
         "eslint-plugin-promise": "^5.1.0",
+        "husky": "^7.0.0",
         "jest": "^27.0.6",
+        "lint-staged": "^11.1.2",
         "prettier": "^2.3.2",
         "ts-node-dev": "^1.1.8"
+    },
+    "lint-staged": {
+        "*.{ts,js,jsx}": [
+            "eslint --fix",
+            "git add"
+        ]
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
     }
 }
