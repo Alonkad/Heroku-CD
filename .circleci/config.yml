@@ -6,8 +6,7 @@ jobs:
       - image: cimg/node:14.4
     steps:
       - checkout
-      - run: node --version
-      - run: npm install
+      - run: npm ci
       - run: npm test
       - heroku/install
       - heroku/deploy-via-git
