@@ -14,7 +14,7 @@ const allowCrossDomain = async (req:Request, res:Response, next: NextFunction) =
   next()
 }
 
-app.use(morgan('dev'));
+app.use(morgan('dev'))
 
 app.use(express.static(path.join(process.cwd(), 'src', 'client'), {
   dotfiles: 'ignore',

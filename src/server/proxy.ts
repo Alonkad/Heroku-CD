@@ -9,14 +9,14 @@ const PROXY_COMMON_CONFIG = {
   logLevel: 'debug',
   headers: {
     Host: WIX_BASE_DOMAIN
-  },
+  }
 }
 
 export default function (app: Express) {
   app.use('/wix', createProxyMiddleware({
     target: `${WIX_BASE_PROTOCOL}${WIX_BASE_DOMAIN}${WIX_SITE_PATH}`,
     pathRewrite: {
-      [`^/wix`]: '',
+      '^/wix': ''
     },
     ...PROXY_COMMON_CONFIG
   } as Options))
