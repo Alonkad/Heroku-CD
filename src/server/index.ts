@@ -1,5 +1,7 @@
 import express, { NextFunction, Request, Response } from 'express'
+import morgan from 'morgan'
 import path from 'path'
+import proxy from './proxy'
 
 const app = express()
 
@@ -11,6 +13,8 @@ const allowCrossDomain = async (req:Request, res:Response, next: NextFunction) =
 
   next()
 }
+
+app.use(morgan('dev'));
 
 app.use(express.static(path.join(process.cwd(), 'src', 'client'), {
   dotfiles: 'ignore',
@@ -27,6 +31,8 @@ app.get('/api', (req:Request, res:Response) => {
     success: true
   })
 })
+
+proxy(app)
 
 /* Start the server */
 const port = process.env.PORT || 8006
