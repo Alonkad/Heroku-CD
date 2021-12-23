@@ -12,7 +12,7 @@ const PROXY_COMMON_CONFIG = {
   }
 }
 
-export default function (app: Express) {
+export default function (app: Express): void {
   app.use('/wix', createProxyMiddleware({
     target: `${WIX_BASE_PROTOCOL}${WIX_BASE_DOMAIN}${WIX_SITE_PATH}`,
     pathRewrite: {
