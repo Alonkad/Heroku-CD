@@ -2,19 +2,19 @@ import { createProxyMiddleware, Options } from 'http-proxy-middleware'
 import { Express } from 'express'
 
 const WIX_BASE_PROTOCOL = 'https://'
-const WIX_BASE_DOMAIN = 'alonk8.editorx.io'
-const WIX_SITE_PATH = '/fiverr-page'
+const WIX_BASE_DOMAIN = 'balancer.wixdns.net'
+// const WIX_SITE_PATH = '/fiverr-page'
 const PROXY_COMMON_CONFIG = {
   changeOrigin: true,
   logLevel: 'debug',
   headers: {
-    Host: WIX_BASE_DOMAIN
+    Host: 'www.fiverr-on-wix.com'
   }
 }
 
 export default function (app: Express): void {
   app.use('/wix', createProxyMiddleware({
-    target: `${WIX_BASE_PROTOCOL}${WIX_BASE_DOMAIN}${WIX_SITE_PATH}`,
+    target: `${WIX_BASE_PROTOCOL}${WIX_BASE_DOMAIN}`,
     pathRewrite: {
       '^/wix': ''
     },
