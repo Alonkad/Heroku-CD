@@ -25,4 +25,9 @@ export default function (app: Express): void {
     target: `${WIX_BASE_PROTOCOL}${WIX_BASE_DOMAIN}`,
     ...PROXY_COMMON_CONFIG
   } as Options))
+
+  app.use('/_api/*', createProxyMiddleware({
+    target: `${WIX_BASE_PROTOCOL}${WIX_BASE_DOMAIN}`,
+    ...PROXY_COMMON_CONFIG
+  } as Options))
 }
